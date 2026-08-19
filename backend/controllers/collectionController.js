@@ -1,6 +1,7 @@
 const Collection = require("../models/Collection");
 
 // GET all collections
+
 const getCollections = async (req, res) => {
   try {
     const collections = await Collection.find()

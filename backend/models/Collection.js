@@ -32,6 +32,7 @@ const collectionSchema = new mongoose.Schema(
       enum: ["tag", "title", "type", "manual", "none"],
       default: "none",
     },
+    
 
     tags: [
       {

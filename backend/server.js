@@ -22,10 +22,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-
 // Routes
 const productRoutes = require('./routes/productRoutes');
-const Collectionroutes = require('./routes/collectionRoutes');
+const collectionRoutes = require('./routes/collectionRoutes');
 app.get('/', (req, res) => {
   res.send('API is running');
 });
