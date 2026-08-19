@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Arshith Fresh</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- YOUR EXISTING CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- LOGIN PAGE ONLY -->
+
+    <style>
+        /* ================================
+           LOGIN PAGE
+        ================================= */
+
+        .login-page {
+
+            width: 100%;
+
+            min-height: 650px;
+
+            background: #ffffff;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            padding: 48px 20px 90px;
+
+        }
+
+
+        .login-container {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            text-align: center;
+
+        }
+
+
+        .login-title {
+
+            font-family: "Playfair Display",
+                Georgia,
+                serif;
+
+            color: #0f7139;
+
+            font-size: 48px;
+
+            font-weight: 400;
+
+            line-height: 1.2;
+
+            margin: 0 0 42px;
+
+        }
+
+
+        .login-form {
+
+            width: 100%;
+
+        }
+
+
+        .login-field {
+
+            width: 100%;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .login-field input {
+
+            width: 100%;
+
+            height: 56px;
+
+            padding: 0 22px;
+
+            border: 2px solid #0f7139;
+
+            border-radius: 6px;
+
+            background: #ffffff;
+
+            color: #2f3e46;
+
+            font-family: "Plus Jakarta Sans",
+                sans-serif;
+
+            font-size: 18px;
+
+            outline: none;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .login-field input::placeholder {
+
+            color: #8a8a8a;
+
+            opacity: 1;
+
+        }
+
+
+        .login-field input:focus {
+
+            border-color: #0b3718;
+
+        }
+
+
+        /* PASSWORD FIELD */
+
+        .password-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .password-wrapper input {
+
+            padding-right: 65px;
+
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 10px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #0f7139;
+
+            border: 1px solid #0f7139;
+
+            border-radius: 6px;
+
+            background: #ffffff;
+
+            cursor: pointer;
+
+        }
+
+
+        .password-toggle svg {
+
+            width: 22px;
+
+            height: 22px;
+
+        }
+
+
+        /* FORGOT PASSWORD */
+
+        .forgot-password {
+
+            display: block;
+
+            width: fit-content;
+
+            margin-top: -8px;
+
+            margin-bottom: 48px;
+
+            color: #0f7139;
+
+            font-family: "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size: 17px;
+
+            text-decoration: underline;
+
+            cursor: pointer;
+
+        }
+
+
+        .forgot-password:hover {
+
+            color: #0b3718;
+
+        }
+
+
+        /* LOGIN BUTTON */
+
+        .login-submit {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 145px;
+
+            height: 58px;
+
+            padding: 0 32px;
+
+            background: #0f7139;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-family: "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+        .login-submit:hover {
+
+            background: #0b3718;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* CREATE ACCOUNT */
+
+        .create-account {
+
+            display: block;
+
+            margin-top: 24px;
+
+            color: #0f7139;
+
+            font-family: "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size: 17px;
+
+            text-decoration: underline;
+
+        }
+
+
+        .create-account:hover {
+
+            color: #0b3718;
+
+        }
+
+
+        /* MOBILE */
+
+        @media screen and (max-width: 767px) {
+
+            .login-page {
+
+                min-height: 560px;
+
+                padding: 38px 20px 70px;
+
+            }
+
+
+            .login-container {
+
+                max-width: 100%;
+
+            }
+
+
+            .login-title {
+
+                font-size: 38px;
+
+                margin-bottom: 32px;
+
+            }
+
+
+            .login-field input {
+
+                height: 52px;
+
+                font-size: 16px;
+
+            }
+
+
+            .forgot-password {
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .login-submit {
+
+                height: 54px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         ANNOUNCEMENT BAR
+    ====================================================== -->
+
+    <div class="announcement-bar">
+
+        <div class="announcement-marquee">
+
+            <div class="announcement-track">
+
+                <span>
+                    Newly Arrived Fresh Homemade Veg Pickles |
+                    Natural Ingredients & Cold-Pressed Oils Only!
+                </span>
+
+                <span class="announcement-separator">
+                    •
+                </span>
+
+                <span>
+                    🚚 Free shipping on all orders ₹1000 & above! |
+                    Limited time festive deal 🥳
+                </span>
+
+                <span class="announcement-separator">
+                    •
+                </span>
+
+                <span>
+                    Newly Arrived Fresh Homemade Veg Pickles |
+                    Natural Ingredients & Cold-Pressed Oils Only!
+                </span>
+
+                <span class="announcement-separator">
+                    •
+                </span>
+
+                <span>
+                    🚚 Free shipping on all orders ₹1000 & above! |
+                    Limited time festive deal 🥳
+                </span>
+
+                <span class="announcement-separator">
+                    •
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="main-header">
+
+        <div class="header-container">
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+
+                <span class="menu-icon-bar"></span>
+
+                <span class="menu-icon-bar"></span>
+
+                <span class="menu-icon-bar"></span>
+
+            </button>
+
+
+
+            <!-- LOGO -->
+
+            <div class="header-logo">
+
+                <a href="index.html">
+
+                    <img src="https://arshithfresh.com/cdn/shop/files/Arshithlogo111.jpg?v=1755685028&width=600"
+                        alt="Arshith Fresh Logo" class="logo-img">
+
+                </a>
+
+            </div>
+
+
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <nav class="desktop-nav">
+
+                <ul class="nav-links">
+
+
+                    <li>
+
+                        <a href="index.html">
+                            Home
+                        </a>
+
+                    </li>
+
+
+
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-trigger">
+
+                            Collections
+
+                            <span class="arrow-down">
+                                ▼
+                            </span>
+
+                        </a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/oils-natural-extracts">
+                                    Oils
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/dry-fruits-nuts">
+                                    Dry Fruits
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/dry-seeds">
+                                    Dry Seeds
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/ghee-and-honey">
+                                    Ghee and Honey
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/cooking-essentials">
+                                    Cooking Essentials
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/spices">
+                                    Spices
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://arshithfresh.com/collections/spice-powders-podulu">
+                                    Spice Powders
+                                </a>
+
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+
+
+
+                    <li>
+
+                        <a href="https://seller.arshithfresh.com/">
+                            Become a Seller
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </nav>
+
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+
+                <!-- SEARCH -->
+
+                <div class="search-bar-container">
+
+                    <form class="search-form" action="/search" method="get">
+
+                        <input type="text" name="q" placeholder="Search..." aria-label="Search">
+
+
+                        <button type="submit" class="search-submit" aria-label="Search">
+
+                            <svg class="icon icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                stroke="currentColor" stroke-width="2">
+
+                                <circle cx="9" cy="9" r="6">
+                                </circle>
+
+                                <line x1="14" y1="14" x2="19" y2="19">
+                                </line>
+
+                            </svg>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- ACCOUNT -->
+
+                <a href="login.html" class="action-btn login-btn" title="Log In">
+
+                    <svg class="icon icon-account" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2">
+                        </path>
+
+                        <circle cx="12" cy="7" r="4">
+                        </circle>
+
+                    </svg>
+
+                </a>
+
+
+
+                <!-- CART -->
+
+                <a href="cart.html" class="action-btn cart-btn" title="Cart">
+
+                    <svg class="icon icon-cart" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+
+                        <circle cx="9" cy="21" r="1">
+                        </circle>
+
+                        <circle cx="20" cy="21" r="1">
+                        </circle>
+
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                        </path>
+
+                    </svg>
+
+                    <span class="cart-count">
+                        0
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MOBILE DRAWER
+    ====================================================== -->
+
+    <div class="mobile-drawer" id="mobileDrawer">
+
+
+        <div class="drawer-header">
+
+            <h3>
+                Menu
+            </h3>
+
+
+            <button class="drawer-close-btn" aria-label="Close Menu">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <div class="drawer-body">
+
+            <ul class="drawer-nav-links">
+
+
+                <li>
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                </li>
+
+
+                <li class="drawer-has-submenu">
+
+                    <a href="#" class="submenu-toggle">
+
+                        Collections
+
+                        <span class="arrow-down">
+                            ▼
+                        </span>
+
+                    </a>
+
+
+                    <ul class="drawer-submenu">
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/oils-natural-extracts">
+                                Oils
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/dry-fruits-nuts">
+                                Dry Fruits
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/dry-seeds">
+                                Dry Seeds
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/ghee-and-honey">
+                                Ghee and Honey
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/cooking-essentials">
+                                Cooking Essentials
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/spices">
+                                Spices
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://arshithfresh.com/collections/spice-powders-podulu">
+                                Spice Powders
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+
+                <li>
+
+                    <a href="https://seller.arshithfresh.com/">
+                        Become a Seller
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="login.html">
+                        Log In
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-overlay" id="drawerOverlay">
+    </div>
+
+
+
+    <!-- =====================================================
+         LOGIN MAIN CONTENT
+    ====================================================== -->
+
+    <main id="MainContent">
+
+
+        <section class="login-page">
+
+            <div class="login-container">
+
+
+                <h1 class="login-title">
+                    Login
+                </h1>
+
+
+
+                <!-- LOGIN FORM -->
+
+                <form class="login-form" id="loginForm">
+
+
+                    <!-- EMAIL -->
+
+                    <div class="login-field">
+
+                        <input type="email" id="loginEmail" name="email" placeholder="Email" autocomplete="email"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="login-field password-wrapper">
+
+                        <input type="password" id="loginPassword" name="password" placeholder="Password"
+                            autocomplete="current-password" required>
+
+
+                        <button type="button" class="password-toggle" onclick="togglePassword()"
+                            aria-label="Show password">
+
+
+                            <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z">
+                                </path>
+
+                                <circle cx="12" cy="12" r="3">
+                                </circle>
+
+                            </svg>
+
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- FORGOT PASSWORD -->
+
+                    <a href="forgot-password.html" class="forgot-password">
+
+                        Forgot your password?
+
+                    </a>
+
+
+
+                    <!-- LOGIN -->
+
+                    <button type="submit" class="login-submit">
+
+                        Login
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <a href="create-account.html" class="create-account">
+
+                    Don't have an account? Create account
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FOOTER BANNER -->
+
+        <div class="footer-banner-wrapper">
+
+            <img src="https://cdn.shopify.com/s/files/1/0858/0772/6869/files/lastban.png?v=1750311559"
+                alt="Footer Banner" class="footer-banner-img">
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="main-footer">
+
+
+        <div class="footer-top">
+
+
+            <!-- COLUMN 1 -->
+
+            <div class="footer-col brand-info">
+
+
+                <img src="https://cdn.shopify.com/s/files/1/0858/0772/6869/files/masaaaaa-removebg-preview.png?v=1760592733"
+                    alt="Arshith Fresh Logo" class="brand-logo">
+
+
+                <p class="office-text">
+
+                    <strong>
+                        Corporate Office
+                    </strong>
+
+                    — Bengaluru, Karnataka, India - 560076
+
+                </p>
+
+
+                <div class="footer-newsletter">
+
+                    <h3 class="newsletter-title">
+
+                        SUBSCRIBE TO OUR NEWSLETTER
+
+                    </h3>
+
+
+                    <form class="newsletter-form">
+
+                        <input type="email" placeholder="Email" required aria-label="Email Address"
+                            class="footer-newsletter-input">
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- COLUMN 2 -->
+
+            <div class="footer-col links-col">
+
+
+                <h3 class="footer-accordion-btn">
+
+                    SERVICES
+
+                    <span class="footer-arrow">
+                        +
+                    </span>
+
+                </h3>
+
+
+                <ul class="footer-links-list">
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/pages/about-us">
+                            About Us
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/collections/all">
+                            Shop All
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/blogs/news">
+                            Blog
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/pages/contact-for-franchise">
+                            Franchise
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="http://suntechorganization.com/">
+                            Suntech Solutions
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- COLUMN 3 -->
+
+            <div class="footer-col links-col">
+
+
+                <h3 class="footer-accordion-btn">
+
+                    POLICIES
+
+                    <span class="footer-arrow">
+                        +
+                    </span>
+
+                </h3>
+
+
+                <ul class="footer-links-list">
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/pages/contact">
+                            Contact Us
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/policies/privacy-policy">
+                            Privacy Policy
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/policies/shipping-policy">
+                            Shipping Info
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/policies/refund-policy">
+                            Returns & Refunds
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/pages/track-order">
+                            Track Your Order
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://arshithfresh.com/policies/terms-of-service">
+                            Terms of Service
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- COLUMN 4 -->
+
+            <div class="footer-col help-col">
+
+
+                <h3 class="footer-accordion-btn">
+
+                    NEED HELP?
+
+                </h3>
+
+
+                <div class="help-box">
+
+
+                    <p class="help-item">
+
+                        📍
+
+                        <span>
+                            Bengaluru, Karnataka, India - 560076
+                        </span>
+
+                    </p>
+
+
+                    <p class="help-item">
+
+                        📞
+
+                        <a href="tel:+918618471424">
+                            +91 8618471424
+                        </a>
+
+                    </p>
+
+
+                    <p class="help-item">
+
+                        ✉️
+
+                        <a href="mailto:support@arshithfresh.com">
+                            support@arshithfresh.com
+                        </a>
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- SOCIAL ICONS -->
+
+                <div class="footer-socials">
+
+
+                    <a href="https://www.linkedin.com/in/farook-n-2bb2b5344/" class="social-icon-btn" target="_blank"
+                        aria-label="LinkedIn">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                            </path>
+
+                        </svg>
+
+                    </a>
+
+
+                    <a href="https://www.instagram.com/arshith_fresh" class="social-icon-btn" target="_blank"
+                        aria-label="Instagram">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.644-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z">
+                            </path>
+
+                        </svg>
+
+                    </a>
+
+
+                    <a href="https://www.linkedin.com/company/arshith-fresh-india-pvt-ltd/posts/?feedView=all"
+                        class="social-icon-btn" target="_blank" aria-label="LinkedIn">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5z">
+                            </path>
+
+                        </svg>
+
+                    </a>
+
+
+                    <a href="https://www.linkedin.com/in/pallavi-n-4578033ab/" class="social-icon-btn" target="_blank"
+                        aria-label="LinkedIn">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5z">
+                            </path>
+
+                        </svg>
+
+                    </a>
+
+
+                    <a href="https://www.youtube.com/@VamikaDurbar" class="social-icon-btn" target="_blank"
+                        aria-label="YouTube">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+
+                            <path
+                                d="M23.498 6.163c-.272-1.022-1.078-1.826-2.1-2.102C19.483 3.5 12 3.5 12 3.5s-7.483 0-9.398.561c-1.022.276-1.828 1.08-2.1 2.102C0 8.083 0 12 0 12s0 3.917-.502 5.837c.272 1.022 1.078 1.826 2.1 2.102C4.517 20.5 12 20.5 12 20.5s7.483 0 9.398-.561c1.022-.276 1.828-1.08 2.1-2.102C24 15.917 24 12 24 12s0-3.917-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                            </path>
+
+                        </svg>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="footer-bottom">
+
+            <p class="copyright-text">
+
+                © 2025 Arshith Fresh India Pvt.Ltd.
+                All rights reserved.
+
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         WHATSAPP BUTTON
+    ====================================================== -->
+
+    <a href="https://api.whatsapp.com/send/?phone=919945676029&text=Hi%20Arshith%20Fresh!" class="whatsapp-float-btn"
+        target="_blank" aria-label="Chat on WhatsApp">
+
+
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.25-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347">
+            </path>
+
+        </svg>
+
+    </a>
+
+
+
+    <!-- =====================================================
+         STICKY CART
+    ====================================================== -->
+
+    <a href="cart.html" class="sticky-cart-bar" id="stickyCartBar" aria-label="Open cart">
+
+
+        <div class="cart-bar-header">
+
+            FREE Shipping on all orders above ₹1,000
+
+        </div>
+
+
+        <div class="cart-bar-body">
+
+            <span class="cart-bar-icon">
+                🛒
+            </span>
+
+
+            <span class="cart-bar-count">
+                0 items
+            </span>
+
+
+            <span class="cart-bar-price">
+                ₹0
+            </span>
+
+
+            <span class="cart-bar-link">
+                Cart
+            </span>
+
+        </div>
+
+
+    </a>
+
+
+
+    <!-- =====================================================
+         LOGIN BACKEND SCRIPT
+    ====================================================== -->
+
+    <script>
+
+        document
+            .getElementById('loginForm')
+            .addEventListener('submit', async function (event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document.getElementById('loginEmail').value;
+
+                const password =
+                    document.getElementById('loginPassword').value;
+
+
+                try {
+
+                    const response = await fetch(
+                        'http://localhost:5000/api/users/login',
+                        {
+                            method: 'POST',
+
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+
+                            body: JSON.stringify({
+                                email: email,
+                                password: password
+                            })
+                        }
+                    );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (response.ok) {
+
+                        alert(data.message);
+
+                        window.location.href =
+                            'index.html';
+
+                    } else {
+
+                        alert(data.message);
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        'Login Error:',
+                        error
+                    );
+
+                    alert(
+                        'Unable to connect to server'
+                    );
+
+                }
+
+            });
+
+    </script>
+
+
+
+    <!-- =====================================================
+         LOGIN PASSWORD SCRIPT
+    ====================================================== -->
+
+    <script>
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("loginPassword");
+
+            const eye =
+                document.getElementById("eyeIcon");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+
+                eye.innerHTML = `
+
+                    <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z">
+                    </path>
+
+                    <line
+                        x1="4"
+                        y1="4"
+                        x2="20"
+                        y2="20">
+                    </line>
+
+                `;
+
+
+            } else {
+
+                password.type = "password";
+
+
+                eye.innerHTML = `
+
+                    <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z">
+                    </path>
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="3">
+                    </circle>
+
+                `;
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

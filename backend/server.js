@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Routes
 const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 app.get('/', (req, res) => {
   res.send('API is running');
@@ -39,6 +40,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 
 // Start server
