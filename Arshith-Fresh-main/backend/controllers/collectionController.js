@@ -95,6 +95,7 @@ const createCollection = async (req, res) => {
   }
 };
 
+
 // UPDATE collection
 const updateCollection = async (req, res) => {
   try {

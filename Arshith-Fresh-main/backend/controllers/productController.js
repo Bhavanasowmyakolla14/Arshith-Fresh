@@ -1,6 +1,7 @@
 // @desc    Fetch all products (sample data)
 // @route   GET /api/products
 // @access  Public
+
 const getProducts = (req, res) => {
   const products = [
     {

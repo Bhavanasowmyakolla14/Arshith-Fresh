@@ -25,4 +25,5 @@ router.put("/:id", updateCollection);
 // Delete collection
 router.delete("/:id", deleteCollection);
 
+
 module.exports = router;
