@@ -47,6 +47,7 @@ app.get('/admin-collections', (req, res) => res.sendFile(path.join(__dirname, '.
 app.get('/admin-orders', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-orders.html')));
 app.get('/admin-inventory', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-inventory.html')));
 app.get('/admin-login', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-login.html')));
+app.get('/admin-product-detail', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-product-detail.html')));
 
 
 

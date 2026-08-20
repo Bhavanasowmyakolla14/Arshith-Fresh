@@ -591,6 +591,25 @@
       const checkboxes = tableBody.querySelectorAll('.custom-checkbox');
       checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
     });
+
+    // Row Click to Open Product Details Page (Matching Video)
+    tableBody.addEventListener('click', function(e) {
+      if (e.target.type === 'checkbox' || e.target.classList.contains('custom-checkbox')) return;
+      
+      const tr = e.target.closest('tr');
+      if (tr) {
+        const nameEl = tr.querySelector('.table-product-name');
+        const name = nameEl ? nameEl.textContent.trim() : '';
+        let slug = 'chilli-powder-premium';
+        if (name.includes('(Premium)')) slug = 'chilli-powder-premium';
+        else if (name.includes('Chilli Powder')) slug = 'chilli-powder';
+        else if (name.includes('Dry-Seeds')) slug = 'dry-seeds-combo';
+        else if (name.includes('Dry-Fruits')) slug = 'dry-fruits-combo';
+        else if (name.includes('Besan Flour')) slug = 'besan-flour';
+        
+        window.location.href = `admin-product-detail.html?product=${slug}`;
+      }
+    });
   </script>
 
 </body>
