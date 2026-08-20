@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers - Arshith Fresh Admin</title>
+  
+  <!-- Shared Admin Theme Stylesheet -->
+  <link rel="stylesheet" href="admin-styles.css">
+  <style>
+    .location-dotted {
+      text-decoration: underline dotted #8c9196;
+      text-underline-offset: 3px;
+      cursor: help;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. GLOBAL TOP HEADER (Shopify-Style Dark Theme)
+       ========================================================================= -->
+  <header class="global-topbar">
+    <div class="topbar-left">
+      <div class="shopify-logo">
+        <svg viewBox="0 0 109.5 124.5">
+          <path d="M74.7 14.1c-.2 0-.4.1-.5.1-.2-.8-.6-1.5-1.1-2.2-2.1-2.9-5.7-4.4-10.7-4.4-1.2 0-2.5.1-3.7.4-4.8 1.1-9.4 3.9-13.6 8.3-3 3.1-6.1 7.6-7.8 11.2-.8 1.7-1.5 3.3-2.1 4.7l-15.6 4.8c-4.8 1.5-5 1.9-5.6 6.9L.1 113.1c-.5 4.3 2.5 8 6.8 8.4.4 0 .9 0 1.3-.1l74-15.3c4.5-.9 7.7-4.9 7.4-9.5l-14.9-82.5z"/>
+        </svg>
+        <span style="font-weight: 700; font-size: 15px; letter-spacing: -0.5px;">shopify</span>
+      </div>
+    </div>
+
+    <!-- Center Search Bar with CTRL K -->
+    <div class="topbar-center">
+      <div class="search-box-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="global-search-input" placeholder="Search">
+        <span class="kbd-shortcut">CTRL K</span>
+      </div>
+    </div>
+
+    <!-- Right Header Actions -->
+    <div class="topbar-right">
+      <!-- Persona / Bot icon -->
+      <button class="notification-btn" aria-label="Assistant / Profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <circle cx="9" cy="10" r="1.5" fill="currentColor"></circle>
+          <circle cx="15" cy="10" r="1.5" fill="currentColor"></circle>
+          <path d="M8 15s1.5 2 4 2 4-2 4-2"></path>
+        </svg>
+      </button>
+
+      <!-- Notification Bell -->
+      <button class="notification-btn" aria-label="Notifications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </button>
+
+      <!-- Store Profile -->
+      <div class="store-profile-dropdown">
+        <div class="store-avatar" style="background-color: #278d43; color: #fff; font-weight: 700;">🌱</div>
+        <span class="store-name-text">Arshith Fresh</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. APP CONTAINER & SIDEBAR
+       ========================================================================= -->
+  <div class="app-container">
+
+    <aside class="app-sidebar">
+      <div class="sidebar-menu">
+        <!-- Home -->
+        <a href="admin-dashboard.html" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            <span>Home</span>
+          </div>
+        </a>
+
+        <!-- Orders -->
+        <a href="admin-orders.html" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span>Orders</span>
+          </div>
+          <span class="badge-count">114</span>
+        </a>
+
+        <!-- Products -->
+        <a href="admin-products.html" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"></path></svg>
+            <span>Products</span>
+          </div>
+        </a>
+
+        <!-- Customers (Active Highlighted) -->
+        <a href="admin-customers.html" class="menu-item active-white" style="margin-bottom: 2px;">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+            </svg>
+            <span>Customers</span>
+          </div>
+        </a>
+
+        <!-- Customers Submenu -->
+        <div style="padding-left: 28px; margin-bottom: 6px;">
+          <a href="#" class="menu-item" style="padding: 4px 8px; font-size: 12.5px; color: var(--sidebar-text-muted);">
+            <span style="margin-right: 6px; font-size: 14px;">↳</span>
+            <span>Segments</span>
+          </a>
+          <a href="#" class="menu-item" style="padding: 4px 8px; font-size: 12.5px; color: var(--sidebar-text-muted);">
+            <span style="margin-left: 14px;">Companies</span>
+          </a>
+        </div>
+
+        <!-- Growth -->
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span>Growth</span>
+          </div>
+        </a>
+
+        <!-- Discounts -->
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+            <span>Discounts</span>
+          </div>
+        </a>
+
+        <!-- Content -->
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            <span>Content</span>
+          </div>
+        </a>
+
+        <!-- Markets -->
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Markets</span>
+          </div>
+        </a>
+
+        <!-- Analytics -->
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            <span>Analytics</span>
+          </div>
+        </a>
+
+        <!-- Sales Channels Section -->
+        <div class="sidebar-section-header">
+          <span>Sales channels</span>
+          <span style="font-size: 14px; font-weight: normal; cursor: pointer;">›</span>
+        </div>
+
+        <a href="index.html" target="_blank" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            <span>Online Store</span>
+          </div>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span>Point of Sale</span>
+          </div>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><line x1="12" y1="7" x2="12" y2="13"></line><line x1="9" y1="10" x2="15" y2="10"></line></svg>
+            <span>Inbox</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Bottom Settings -->
+      <div class="sidebar-bottom">
+        <a href="#" class="menu-item">
+          <div class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <!-- =========================================================================
+         3. MAIN CUSTOMERS CONTENT
+         ========================================================================= -->
+    <main class="main-viewport">
+      
+      <!-- Top Action Bar -->
+      <div class="table-page-header" style="margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #202223;">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+          <h1 style="font-size: 20px; font-weight: 700; color: #202223;">Customers</h1>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-secondary-pill" onclick="exportCustomers()">Export</button>
+          <button class="btn-secondary-pill" onclick="importCustomers()">Import</button>
+          <button class="btn-primary-pill" onclick="openAddCustomerModal()">Add customer</button>
+        </div>
+      </div>
+
+      <!-- Segment / Query Expression Box (Matching Video / Image) -->
+      <div class="segment-query-card">
+        <div class="segment-error-header" onclick="toggleEditor()">
+          <div class="segment-error-title">
+            <span class="error-dot"></span>
+            <span>Line 3: Enter a complete expression</span>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #616161;">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <div class="segment-query-editor" id="queryEditor">
+          <div class="editor-line">
+            <span class="editor-line-num">1</span>
+            <span class="editor-line-content"><span class="editor-keyword">FROM</span> customers</span>
+          </div>
+          <div class="editor-line">
+            <span class="editor-line-num">2</span>
+            <span class="editor-line-content"><span class="editor-keyword">SHOW</span> customer_name, note, email_subscription_status, location, number_of_orders, amount_spent, date_customer_updated</span>
+          </div>
+        </div>
+
+        <div class="segment-footer-bar">
+          <button class="segment-refine-btn">
+            <div class="refine-bot-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                <circle cx="12" cy="5" r="2"></circle>
+                <path d="M12 7v4"></path>
+                <line x1="8" y1="16" x2="8" y2="16"></line>
+                <line x1="16" y1="16" x2="16" y2="16"></line>
+              </svg>
+            </div>
+            <span>Refine your segment</span>
+          </button>
+
+          <button class="btn-circle-submit" title="Run query">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Customers Table Card -->
+      <div class="table-card-container">
+
+        <!-- Search Bar within Card -->
+        <div style="padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px; flex: 1; max-width: 400px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d7175" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="customerSearchInput" placeholder="Search customers" style="border: none; outline: none; width: 100%; font-size: 13px; color: var(--text-primary);">
+          </div>
+
+          <!-- Column selector icon -->
+          <button style="background: none; border: none; cursor: pointer; color: #6d7175; padding: 4px 6px; border-radius: 4px;" title="Customize columns">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <line x1="15" y1="3" x2="15" y2="21"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Table Viewport -->
+        <div class="table-scroll-viewport">
+          <table class="shopify-data-table" id="customersTable">
+            <thead>
+              <tr>
+                <th style="width: 40px;"><input type="checkbox" id="selectAllCheckbox" class="custom-checkbox"></th>
+                <th>Customer name</th>
+                <th>Email subscription</th>
+                <th><span class="location-dotted">Location</span></th>
+                <th style="text-align: right;">Orders</th>
+                <th style="text-align: right; padding-right: 24px;">Amount spent</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody">
+
+              <!-- 1. Kolla Bhavana Sowmya -->
+              <tr>
+                <td><input type="checkbox" class="custom-checkbox row-select"></td>
+                <td style="font-weight: 500; color: #202223;">Kolla Bhavana Sowmya</td>
+                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
+                <td style="color: var(--text-secondary);">India</td>
+                <td style="text-align: right; color: var(--text-secondary);">0</td>
+                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+              </tr>
+
+              <!-- 2. Kranti Kranti -->
+              <tr>
+                <td><input type="checkbox" class="custom-checkbox row-select"></td>
+                <td style="font-weight: 500; color: #202223;">Kranti Kranti</td>
+                <td><span class="badge-sub-status sub">Subscribed</span></td>
+                <td style="color: var(--text-secondary);">India</td>
+                <td style="text-align: right; color: var(--text-secondary);">0</td>
+                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+              </tr>
+
+              <!-- 3. Bhavana Sowmya -->
+              <tr>
+                <td><input type="checkbox" class="custom-checkbox row-select"></td>
+                <td style="font-weight: 500; color: #202223;">Bhavana Sowmya</td>
+                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
+                <td style="color: var(--text-secondary);">India</td>
+                <td style="text-align: right; color: var(--text-secondary);">0</td>
+                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+              </tr>
+
+              <!-- 4. Harshith -->
+              <tr>
+                <td><input type="checkbox" class="custom-checkbox row-select"></td>
+                <td style="font-weight: 500; color: #202223;">Harshith</td>
+                <td><span class="badge-sub-status sub">Subscribed</span></td>
+                <td style="color: var(--text-secondary);"></td>
+                <td style="text-align: right; color: var(--text-secondary);">0</td>
+                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+              </tr>
+
+              <!-- 5. Kranti Kranti -->
+              <tr>
+                <td><input type="checkbox" class="custom-checkbox row-select"></td>
+                <td style="font-weight: 500; color: #202223;">Kranti Kranti</td>
+                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
+                <td style="color: var(--text-secondary);">India</td>
+                <td style="text-align: right; color: var(--text-secondary);">0</td>
+                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       4. ADD CUSTOMER MODAL
+       ========================================================================= -->
+  <div class="modal-overlay" id="addCustomerModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Add new customer</h3>
+        <button class="btn-icon" onclick="closeAddCustomerModal()" style="border:none; background:none; cursor:pointer; font-size:18px;">&times;</button>
+      </div>
+
+      <form id="newCustomerForm" onsubmit="handleCreateCustomer(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input type="text" id="custFirstName" class="form-control" placeholder="e.g. Rahul" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input type="text" id="custLastName" class="form-control" placeholder="e.g. Sharma" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" id="custEmail" class="form-control" placeholder="customer@example.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Location (Country / City)</label>
+              <input type="text" id="custLocation" class="form-control" placeholder="e.g. India" value="India">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone number</label>
+              <input type="tel" id="custPhone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
+              <input type="checkbox" id="custSubscribed" class="custom-checkbox" checked>
+              <span>Customer agreed to receive marketing emails</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeAddCustomerModal()">Cancel</button>
+          <button type="submit" class="btn-save">Save customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    // Toggle Query Expression Editor
+    function toggleEditor() {
+      const editor = document.getElementById('queryEditor');
+      editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Modal Control
+    function openAddCustomerModal() {
+      document.getElementById('addCustomerModal').classList.add('active');
+    }
+
+    function closeAddCustomerModal() {
+      document.getElementById('addCustomerModal').classList.remove('active');
+    }
+
+    // Select All Checkbox
+    const selectAll = document.getElementById('selectAllCheckbox');
+    selectAll.addEventListener('change', (e) => {
+      const rowBoxes = document.querySelectorAll('.row-select');
+      rowBoxes.forEach(box => box.checked = e.target.checked);
+    });
+
+    // Client-side Search Filter (Both table search and top global search)
+    function filterCustomers(query) {
+      const q = query.toLowerCase();
+      const rows = document.querySelectorAll('#customersTableBody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+
+    const searchInput = document.getElementById('customerSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => filterCustomers(e.target.value));
+    }
+
+    const globalSearch = document.querySelector('.global-search-input');
+    if (globalSearch) {
+      globalSearch.addEventListener('input', (e) => filterCustomers(e.target.value));
+    }
+
+    // Create New Customer Handler
+    function handleCreateCustomer(e) {
+      e.preventDefault();
+      const firstName = document.getElementById('custFirstName').value.trim();
+      const lastName = document.getElementById('custLastName').value.trim();
+      const location = document.getElementById('custLocation').value.trim();
+      const isSubscribed = document.getElementById('custSubscribed').checked;
+      const fullName = `${firstName} ${lastName}`;
+
+      const tbody = document.getElementById('customersTableBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="checkbox" class="custom-checkbox row-select"></td>
+        <td style="font-weight: 500; color: #202223;">${fullName}</td>
+        <td><span class="badge-sub-status ${isSubscribed ? 'sub' : 'not-sub'}">${isSubscribed ? 'Subscribed' : 'Not subscribed'}</span></td>
+        <td style="color: var(--text-secondary);">${location}</td>
+        <td style="text-align: right; color: var(--text-secondary);">0</td>
+        <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
+      `;
+
+      tbody.insertBefore(tr, tbody.firstChild);
+      closeAddCustomerModal();
+      document.getElementById('newCustomerForm').reset();
+    }
+
+    function exportCustomers() {
+      alert("Exporting customers to CSV...");
+    }
+
+    function importCustomers() {
+      alert("Import customers modal / CSV upload ready.");
+    }
+  </script>
+
+</body>
+</html>

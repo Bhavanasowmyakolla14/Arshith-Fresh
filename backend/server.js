@@ -39,6 +39,15 @@ app.use('/api/products', productRoutes);
 app.use('/api/collections', collectionRoutes);
 app.use('/api/users', userRoutes);
 
+// Admin clean page routes
+app.get(['/admin', '/admin-dashboard'], (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-dashboard.html')));
+app.get('/admin-customers', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-customers.html')));
+app.get('/admin-products', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-products.html')));
+app.get('/admin-collections', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-collections.html')));
+app.get('/admin-orders', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-orders.html')));
+app.get('/admin-inventory', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-inventory.html')));
+app.get('/admin-login', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin-login.html')));
+
 
 
 // Start server

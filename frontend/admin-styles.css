@@ -703,3 +703,216 @@ button, input, select, textarea {
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
+
+/* ==========================================================================
+   CUSTOMER PAGE SPECIFIC STYLES (MATCHING SHOPIFY ADMIN)
+   ========================================================================== */
+
+/* Page Header Buttons */
+.btn-secondary-pill {
+  background-color: #f1f2f4;
+  color: #202223;
+  border: 1px solid #dcdfe3;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.btn-secondary-pill:hover {
+  background-color: #e4e5e7;
+}
+
+.btn-primary-pill {
+  background-color: #202223;
+  color: #ffffff;
+  border: 1px solid #202223;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary-pill:hover {
+  opacity: 0.9;
+}
+
+/* Segment / Query Card */
+.segment-query-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e3e5;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.segment-error-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f6f6f7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.segment-error-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #303030;
+}
+
+.error-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #d82c0d;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.segment-query-editor {
+  background-color: #ffffff;
+  padding: 14px 16px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #8c9196;
+}
+
+.editor-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.editor-line-num {
+  color: #b8b8b8;
+  width: 14px;
+  text-align: right;
+  user-select: none;
+  font-size: 11.5px;
+}
+
+.editor-line-content {
+  color: #8c9196;
+  word-break: break-all;
+}
+
+.editor-keyword {
+  color: #616161;
+  font-weight: 600;
+}
+
+.segment-footer-bar {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f1f2f4;
+  background-color: #ffffff;
+}
+
+.segment-refine-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #616161;
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.segment-refine-btn:hover {
+  background-color: #f6f6f7;
+  color: #202223;
+}
+
+.refine-bot-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.btn-circle-submit {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f1f2f4;
+  color: #8c9196;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+}
+
+/* Subscription status badges */
+.badge-sub-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-sub-status.sub {
+  background-color: #d1fadf;
+  color: #027a48;
+}
+
+.badge-sub-status.not-sub {
+  background-color: #f1f2f4;
+  color: #4a4d50;
+}
+
+/* Sidebar Section Headers & Indented Submenu */
+.sidebar-section-header {
+  padding: 16px 16px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sidebar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submenu-indented {
+  padding-left: 12px;
+}
+
+.submenu-indented .menu-item {
+  padding-left: 32px;
+  font-size: 12.5px;
+}
+
+.menu-item.active-white {
+  background-color: #ffffff !important;
+  color: #202223 !important;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
