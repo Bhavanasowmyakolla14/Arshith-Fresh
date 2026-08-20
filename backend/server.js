@@ -25,9 +25,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // Routes
 const productRoutes = require('./routes/productRoutes');
 const collectionRoutes = require('./routes/collectionRoutes');
-app.get('/', (req, res) => {
-  res.send('API is running');
-});
+const userRoutes = require('./routes/userRoutes');
 
 app.get('/api', (req, res) => {
   res.json({
@@ -38,7 +36,8 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/products', productRoutes);
-app.use('/api/collections', Collectionroutes);
+app.use('/api/collections', collectionRoutes);
+app.use('/api/users', userRoutes);
 
 
 
