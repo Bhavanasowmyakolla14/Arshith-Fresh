@@ -94,6 +94,11 @@
           <span class="badge-count">114</span>
         </a>
 
+        <div class="submenu-list">
+          <a href="admin-orders-drafts.html" class="submenu-item">Drafts</a>
+          <a href="admin-orders-abandoned.html" class="submenu-item">Abandoned checkouts</a>
+        </div>
+
         <!-- Products -->
         <a href="admin-products.html" class="menu-item">
           <div class="menu-item-left">
@@ -101,6 +106,14 @@
             <span>Products</span>
           </div>
         </a>
+
+        <div class="submenu-list">
+          <a href="admin-collections.html" class="submenu-item">Collections</a>
+          <a href="admin-inventory.html" class="submenu-item">Inventory</a>
+          <a href="admin-purchase-orders.html" class="submenu-item">Purchase orders</a>
+          <a href="admin-transfers.html" class="submenu-item">Transfers</a>
+          <a href="admin-gift-cards.html" class="submenu-item">Gift cards</a>
+        </div>
 
         <!-- Customers (Active Highlighted) -->
         <a href="admin-customers.html" class="menu-item active">
@@ -112,6 +125,11 @@
             <span>Customers</span>
           </div>
         </a>
+
+        <div class="submenu-list">
+          <a href="admin-customer-segments.html" class="submenu-item">Segments</a>
+          <a href="admin-customer-companies.html" class="submenu-item">Companies</a>
+        </div>
 
         <!-- Growth -->
         <a href="#" class="menu-item">
@@ -251,57 +269,6 @@
               </tr>
             </thead>
             <tbody id="customersTableBody">
-
-              <!-- 1. Kolla Bhavana Sowmya -->
-              <tr>
-                <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
-                <td style="font-weight: 500; color: #202223;">Kolla Bhavana Sowmya</td>
-                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
-                <td style="color: var(--text-secondary);">India</td>
-                <td style="text-align: center; color: var(--text-secondary);">0</td>
-                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-              </tr>
-
-              <!-- 2. Kranti Kranti -->
-              <tr>
-                <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
-                <td style="font-weight: 500; color: #202223;">Kranti Kranti</td>
-                <td><span class="badge-sub-status sub">Subscribed</span></td>
-                <td style="color: var(--text-secondary);">India</td>
-                <td style="text-align: center; color: var(--text-secondary);">0</td>
-                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-              </tr>
-
-              <!-- 3. Bhavana Sowmya -->
-              <tr>
-                <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
-                <td style="font-weight: 500; color: #202223;">Bhavana Sowmya</td>
-                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
-                <td style="color: var(--text-secondary);">India</td>
-                <td style="text-align: center; color: var(--text-secondary);">0</td>
-                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-              </tr>
-
-              <!-- 4. Harshith -->
-              <tr>
-                <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
-                <td style="font-weight: 500; color: #202223;">Harshith</td>
-                <td><span class="badge-sub-status sub">Subscribed</span></td>
-                <td style="color: var(--text-secondary);">-</td>
-                <td style="text-align: center; color: var(--text-secondary);">0</td>
-                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-              </tr>
-
-              <!-- 5. Kranti Kranti -->
-              <tr>
-                <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
-                <td style="font-weight: 500; color: #202223;">Kranti Kranti</td>
-                <td><span class="badge-sub-status not-sub">Not subscribed</span></td>
-                <td style="color: var(--text-secondary);">India</td>
-                <td style="text-align: center; color: var(--text-secondary);">0</td>
-                <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-              </tr>
-
             </tbody>
           </table>
         </div>
@@ -311,78 +278,42 @@
     </main>
   </div>
 
-  <!-- =========================================================================
-       4. ADD CUSTOMER MODAL
-       ========================================================================= -->
-  <div class="modal-overlay" id="addCustomerModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Add new customer</h3>
-        <button class="btn-icon" onclick="closeAddCustomerModal()" style="border:none; background:none; cursor:pointer; font-size:18px;">&times;</button>
-      </div>
-
-      <form id="newCustomerForm" onsubmit="handleCreateCustomer(event)">
-        <div class="modal-body">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">First name</label>
-              <input type="text" id="custFirstName" class="form-control" placeholder="e.g. Rahul" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Last name</label>
-              <input type="text" id="custLastName" class="form-control" placeholder="e.g. Sharma" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" id="custEmail" class="form-control" placeholder="customer@example.com" required>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Location (Country / City)</label>
-              <input type="text" id="custLocation" class="form-control" placeholder="e.g. India" value="India">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Phone number</label>
-              <input type="tel" id="custPhone" class="form-control" placeholder="+91 98765 43210">
-            </div>
-          </div>
-
-          <div class="form-group" style="margin-top: 8px;">
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
-              <input type="checkbox" id="custSubscribed" class="custom-checkbox" checked>
-              <span>Customer agreed to receive marketing emails</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn-cancel" onclick="closeAddCustomerModal()">Cancel</button>
-          <button type="submit" class="btn-save">Save customer</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <!-- JavaScript Interactivity -->
   <script>
-    // Modal Control
-    function openAddCustomerModal() {
-      document.getElementById('addCustomerModal').classList.add('active');
+    async function fetchCustomers() {
+      const tbody = document.getElementById('customersTableBody');
+      try {
+        const res = await fetch('http://localhost:5000/api/customers');
+        const data = await res.json();
+        
+        tbody.innerHTML = '';
+        if (!data.success || data.data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px;">No customers found.</td></tr>';
+          return;
+        }
+
+        data.data.forEach(cust => {
+          const fullName = `${cust.firstName} ${cust.lastName}`;
+          const isSubscribed = true; // placeholder for email subscription
+          const location = "India"; // placeholder
+          
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="padding-left: 16px;"><input type="checkbox" class="custom-checkbox row-select"></td>
+            <td style="font-weight: 500; color: #202223;">${fullName}</td>
+            <td><span class="badge-sub-status ${isSubscribed ? 'sub' : 'not-sub'}">${isSubscribed ? 'Subscribed' : 'Not subscribed'}</span></td>
+            <td style="color: var(--text-secondary);">${location}</td>
+            <td style="text-align: center; color: var(--text-secondary);">${cust.ordersCount}</td>
+            <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹${cust.totalSpent.toFixed(2)}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error('Error fetching customers:', err);
+      }
     }
 
-    function closeAddCustomerModal() {
-      document.getElementById('addCustomerModal').classList.remove('active');
-    }
-
-    // Select All Checkbox
-    const selectAll = document.getElementById('selectAllCheckbox');
-    selectAll.addEventListener('change', (e) => {
-      const rowBoxes = document.querySelectorAll('.row-select');
-      rowBoxes.forEach(box => box.checked = e.target.checked);
-    });
+    document.addEventListener('DOMContentLoaded', fetchCustomers);
 
     // Client-side Search Filter (Both table search and top global search)
     function filterCustomers(query) {
@@ -402,39 +333,6 @@
     const globalSearch = document.querySelector('.global-search-input');
     if (globalSearch) {
       globalSearch.addEventListener('input', (e) => filterCustomers(e.target.value));
-    }
-
-    // Create New Customer Handler
-    function handleCreateCustomer(e) {
-      e.preventDefault();
-      const firstName = document.getElementById('custFirstName').value.trim();
-      const lastName = document.getElementById('custLastName').value.trim();
-      const location = document.getElementById('custLocation').value.trim();
-      const isSubscribed = document.getElementById('custSubscribed').checked;
-      const fullName = `${firstName} ${lastName}`;
-
-      const tbody = document.getElementById('customersTableBody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><input type="checkbox" class="custom-checkbox row-select"></td>
-        <td style="font-weight: 500; color: #202223;">${fullName}</td>
-        <td><span class="badge-sub-status ${isSubscribed ? 'sub' : 'not-sub'}">${isSubscribed ? 'Subscribed' : 'Not subscribed'}</span></td>
-        <td style="color: var(--text-secondary);">${location}</td>
-        <td style="text-align: right; color: var(--text-secondary);">0</td>
-        <td style="text-align: right; padding-right: 24px; font-weight: 500;">₹0.00</td>
-      `;
-
-      tbody.insertBefore(tr, tbody.firstChild);
-      closeAddCustomerModal();
-      document.getElementById('newCustomerForm').reset();
-    }
-
-    function exportCustomers() {
-      alert("Exporting customers to CSV...");
-    }
-
-    function importCustomers() {
-      alert("Import customers modal / CSV upload ready.");
     }
   </script>
 

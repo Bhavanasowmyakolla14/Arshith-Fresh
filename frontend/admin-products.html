@@ -470,23 +470,109 @@
             <div class="form-group">
               <label for="prodPrice" class="form-label">Price (₹) *</label>
               <input type="number" id="prodPrice" class="form-control" placeholder="180.00" min="0" step="0.01" required>
-            </div>
-          </div>
-
-          <!-- Image Upload from Computer -->
           <div class="form-group">
-            <label for="prodImageFile" class="form-label">Product Photo (From Computer)</label>
-            <input type="file" id="prodImageFile" class="form-control" accept="image/*">
-            
-            <div id="imagePreviewBox" style="display:none; align-items:center; gap:10px; margin-top:8px; padding:8px; background:#f4f4f5; border-radius:6px;">
-              <img id="imageThumb" src="" style="width:40px; height:40px; object-fit:cover; border-radius:4px;" alt="Preview">
-              <span id="imageFileName" style="font-size:12px; font-weight:600; color:#0f7139;">✓ Image Selected</span>
+            <label class="form-label">Title</label>
+            <input type="text" id="quickTitle" class="form-control" placeholder="e.g. Organic Turmeric Powder" required>
+          </div>
+          <div class="form-group" style="margin-top: 12px;">
+            <label class="form-label">Status</label>
+            <select id="quickStatus" class="form-control">
+              <option value="Active">Active</option>
+              <option value="Draft">Draft</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeQuickAddModal()">Cancel</button>
+          <button type="submit" id="quickSubmitBtn" class="btn-save">Create product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. FULL ADD PRODUCT MODAL (MATCHING VIDEO UI)
+       ========================================================================= -->
+  <div class="modal-overlay" id="addProductModal">
+    <div class="modal-box" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3>Add Product</h3>
+        <button class="btn-icon" id="closeAddProductModalBtn" style="border:none; background:none; cursor:pointer; font-size:18px;">&times;</button>
+      </div>
+
+      <form id="addProductForm">
+        <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+          <!-- Left Column -->
+          <div style="display: flex; gap: 20px;">
+            <div style="flex: 2;">
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text" id="prodTitle" class="form-control" placeholder="Short sleeve t-shirt" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Description</label>
+                <div style="border: 1px solid var(--border-subtle); border-radius: 4px; overflow:hidden;">
+                  <div style="background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle); padding: 6px; display: flex; gap: 4px;">
+                    <button type="button" class="btn-icon" style="border:none; background:none; cursor:pointer; font-size: 13px; font-weight:600;">B</button>
+                    <button type="button" class="btn-icon" style="border:none; background:none; cursor:pointer; font-style: italic;">I</button>
+                    <button type="button" class="btn-icon" style="border:none; background:none; cursor:pointer; text-decoration: underline;">U</button>
+                  </div>
+                  <textarea id="prodDesc" class="form-control" rows="4" style="border:none; border-radius:0; resize:vertical;"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 16px;">
+                <label class="form-label">Media</label>
+                <div style="border: 2px dashed var(--border-subtle); border-radius: 6px; padding: 20px; text-align: center; cursor: pointer;" onclick="document.getElementById('prodImageFile').click()">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6d7175" stroke-width="2" style="margin-bottom:8px;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                  <p style="margin:0; font-size: 13px; font-weight: 500;">Add file</p>
+                  <p style="margin:4px 0 0; font-size: 12px; color: var(--text-secondary);">Accepts images</p>
+                  <input type="file" id="prodImageFile" style="display:none;" accept="image/*">
+                </div>
+                <div id="imagePreviewBox" style="margin-top: 12px; display: none; align-items: center; gap: 12px;">
+                  <img id="imageThumb" src="" alt="Preview" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border-subtle);">
+                  <span style="font-size: 13px; color: var(--text-secondary);">Image selected</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div style="flex: 1;">
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select id="prodStatus" class="form-control">
+                  <option value="active">Active</option>
+                  <option value="draft" selected>Draft</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Product organization</label>
+                <div style="margin-top: 8px;">
+                  <label style="font-size: 12.5px; display:block; margin-bottom: 4px;">Product category</label>
+                  <input type="text" id="prodCategory" class="form-control" placeholder="Apparel & Accessories">
+                </div>
+                <div style="margin-top: 8px;">
+                  <label style="font-size: 12.5px; display:block; margin-bottom: 4px;">Product type</label>
+                  <input type="text" id="prodType" class="form-control" placeholder="Shirts">
+                </div>
+                <div style="margin-top: 8px;">
+                  <label style="font-size: 12.5px; display:block; margin-bottom: 4px;">Vendor</label>
+                  <input type="text" id="prodVendor" class="form-control" placeholder="Store name">
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-footer" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 16px 20px; display: flex; justify-content: flex-end; gap: 12px;">
           <button type="button" id="cancelModalBtn" class="btn-pill">Cancel</button>
           <button type="submit" class="btn-pill btn-pill-primary">Save product</button>
         </div>
@@ -495,121 +581,112 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       5. JAVASCRIPT: MODAL TOGGLE, FILEREADER, AND ROW ADDITION
-       ========================================================================= -->
   <script>
-    const modal = document.getElementById('addProductModal');
-    const openBtn = document.getElementById('openAddProductModalBtn');
-    const closeBtn = document.getElementById('closeAddProductModalBtn');
-    const cancelBtn = document.getElementById('cancelModalBtn');
-    const form = document.getElementById('addProductForm');
     const tableBody = document.getElementById('productsTableBody');
-    const searchInput = document.getElementById('productSearchInput');
+    const searchInput = document.getElementById('productsSearchInput');
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 
-    const fileInput = document.getElementById('prodImageFile');
-    const previewBox = document.getElementById('imagePreviewBox');
-    const thumbImg = document.getElementById('imageThumb');
-    let base64Image = '';
+    const API_URL = 'http://localhost:5000/api/products';
 
-    // File selection
-    fileInput.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          base64Image = evt.target.result;
-          thumbImg.src = base64Image;
-          previewBox.style.display = 'flex';
-        };
-        reader.readAsDataURL(file);
+    // Fetch Products from API
+    async function fetchProducts() {
+      try {
+        const response = await fetch(API_URL);
+        const products = await response.json();
+        
+        tableBody.innerHTML = ''; 
+
+        if(products.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px;">No products found.</td></tr>';
+          return;
+        }
+
+        products.forEach(product => {
+          const statusClass = product.status === 'active' ? 'active' : 'draft';
+          const imgUrl = (product.images && product.images.length > 0) ? product.images[0].url : 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100&auto=format&fit=crop&q=60';
+          
+          let variantsCount = product.variants ? product.variants.length : 0;
+          let stockText = `${variantsCount} variants`;
+
+          const tr = document.createElement('tr');
+          tr.dataset.id = product._id;
+          tr.style.cursor = 'pointer';
+
+          tr.innerHTML = `
+            <td><input type="checkbox" class="custom-checkbox"></td>
+            <td>
+              <div class="table-product-item">
+                <img src="${imgUrl}" class="table-product-thumb" alt="${product.title}">
+                <span class="table-product-name">${product.title}</span>
+              </div>
+            </td>
+            <td><span class="status-pill ${statusClass}">${product.status === 'active' ? 'Active' : 'Draft'}</span></td>
+            <td>${stockText}</td>
+            <td>${product.categoryId ? product.categoryId.name : 'Uncategorized'}</td>
+            <td>2</td>
+            <td>0</td>
+            <td>${product.type || 'Standard'}</td>
+            <td>${product.brand || 'Arshith Fresh'}</td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        tableBody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px;">Failed to load products.</td></tr>';
       }
-    });
+    }
 
-    // Modal toggles
-    openBtn.addEventListener('click', () => { modal.classList.add('active'); });
-    const closeModal = () => {
-      modal.classList.remove('active');
-      form.reset();
-      base64Image = '';
-      previewBox.style.display = 'none';
-    };
-    closeBtn.addEventListener('click', closeModal);
-    cancelBtn.addEventListener('click', closeModal);
+    document.addEventListener('DOMContentLoaded', fetchProducts);
 
-    // Form submit
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const title = document.getElementById('prodTitle').value;
-      const type = document.getElementById('prodType').value;
-      const status = document.getElementById('prodStatus').value;
-      const metric = document.getElementById('prodMetric').value;
-      const stock = document.getElementById('prodStock').value;
-      const vendor = document.getElementById('prodVendor').value;
-      const image = base64Image || 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100&auto=format&fit=crop&q=60';
-
-      const statusBadge = status === 'active' 
-        ? '<span class="status-pill active">Active</span>'
-        : (status === 'archived' ? '<span class="status-pill archived">Archived</span>' : '<span class="status-pill draft">Draft</span>');
-
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><input type="checkbox" class="custom-checkbox"></td>
-        <td>
-          <div class="table-product-item">
-            <img src="${image}" class="table-product-thumb" alt="${title}">
-            <span class="table-product-name">${title}</span>
-          </div>
-        </td>
-        <td>${statusBadge}</td>
-        <td>${stock} in stock for ${metric}</td>
-        <td>Uncategorized</td>
-        <td>3</td>
-        <td>0</td>
-        <td>${type}</td>
-        <td>${vendor}</td>
-      `;
-
-      tableBody.prepend(tr);
-      closeModal();
-    });
-
-    // Client-side search filter
-    searchInput.addEventListener('input', function(e) {
-      const term = e.target.value.toLowerCase();
-      const rows = tableBody.querySelectorAll('tr');
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(term) ? '' : 'none';
-      });
-    });
-
-    // Select All Checkbox
-    selectAllCheckbox.addEventListener('change', function() {
-      const checkboxes = tableBody.querySelectorAll('.custom-checkbox');
-      checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
-    });
-
-    // Row Click to Open Product Details Page (Matching Video)
+    // Row Click to Open Product Details Page
     tableBody.addEventListener('click', function(e) {
       if (e.target.type === 'checkbox' || e.target.classList.contains('custom-checkbox')) return;
       
       const tr = e.target.closest('tr');
-      if (tr) {
-        const nameEl = tr.querySelector('.table-product-name');
-        const name = nameEl ? nameEl.textContent.trim() : '';
-        let slug = 'chilli-powder-premium';
-        if (name.includes('(Premium)')) slug = 'chilli-powder-premium';
-        else if (name.includes('Chilli Powder')) slug = 'chilli-powder';
-        else if (name.includes('Dry-Seeds')) slug = 'dry-seeds-combo';
-        else if (name.includes('Dry-Fruits')) slug = 'dry-fruits-combo';
-        else if (name.includes('Besan Flour')) slug = 'besan-flour';
-        
-        window.location.href = `admin-product-detail.html?product=${slug}`;
+      if (tr && tr.dataset.id) {
+        window.location.href = `admin-product-detail.html?id=${tr.dataset.id}`;
       }
     });
+
+    // Client-side search filter
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase();
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(term) ? '' : 'none';
+        });
+      });
+    }
+
+    // Select All Checkbox
+    if (selectAllCheckbox) {
+      selectAllCheckbox.addEventListener('change', function() {
+        const checkboxes = tableBody.querySelectorAll('.custom-checkbox');
+        checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
+      });
+    }
+
+    // Modal toggles
+    const modal = document.getElementById('addProductModal');
+    const openBtn = document.getElementById('openAddProductModalBtn');
+    const closeBtn = document.getElementById('closeAddProductModalBtn');
+    const cancelBtn = document.getElementById('cancelModalBtn');
+    
+    if (openBtn) openBtn.addEventListener('click', () => { modal.classList.add('active'); });
+    const closeModal = () => {
+      modal.classList.remove('active');
+    };
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+    function openQuickAddModal() {
+      document.getElementById('quickAddModal').classList.add('active');
+    }
+    function closeQuickAddModal() {
+      document.getElementById('quickAddModal').classList.remove('active');
+    }
   </script>
 
 </body>

@@ -63,6 +63,11 @@
           <span class="badge-count">114</span>
         </a>
 
+        <div class="submenu-list">
+          <a href="admin-orders-drafts.html" class="submenu-item">Drafts</a>
+          <a href="admin-orders-abandoned.html" class="submenu-item">Abandoned checkouts</a>
+        </div>
+
         <a href="admin-products.html" class="menu-item active">
           <div class="menu-item-left">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"></path></svg>
@@ -73,9 +78,9 @@
         <div class="submenu-list">
           <a href="admin-collections.html" class="submenu-item">Collections</a>
           <a href="admin-inventory.html" class="submenu-item active">Inventory</a>
-          <a href="#" class="submenu-item">Purchase orders</a>
-          <a href="#" class="submenu-item">Transfers</a>
-          <a href="#" class="submenu-item">Gift cards</a>
+          <a href="admin-purchase-orders.html" class="submenu-item">Purchase orders</a>
+          <a href="admin-transfers.html" class="submenu-item">Transfers</a>
+          <a href="admin-gift-cards.html" class="submenu-item">Gift cards</a>
         </div>
 
         <a href="admin-customers.html" class="menu-item">
@@ -84,6 +89,11 @@
             <span>Customers</span>
           </div>
         </a>
+
+        <div class="submenu-list">
+          <a href="admin-customer-segments.html" class="submenu-item">Segments</a>
+          <a href="admin-customer-companies.html" class="submenu-item">Companies</a>
+        </div>
 
         <a href="#" class="menu-item">
           <div class="menu-item-left">
@@ -318,6 +328,96 @@
     </main>
 
   </div>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    const API_URL = 'http://localhost:5000/api/inventory';
+    const invTbody = document.querySelector('.shopify-table tbody');
+
+    async function fetchInventory() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        
+        invTbody.innerHTML = ''; // Clear hardcoded HTML rows
+
+        if (!data.success || data.data.length === 0) {
+          invTbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No inventory found.</td></tr>';
+          return;
+        }
+
+        data.data.forEach(item => {
+          const variant = item.variantId;
+          if (!variant) return;
+          
+          const product = variant.productId || {};
+          const title = product.title || 'Unknown Product';
+          const image = product.image || 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=80&auto=format&fit=crop&q=60';
+          const sku = variant.sku || '-';
+          const variantTitle = variant.title || 'Default Title';
+          
+          const available = item.availableQuantity || 0;
+          const onHand = item.quantity || 0;
+          const reserved = item.reservedQuantity || 0;
+
+          const tr = document.createElement('tr');
+          // For editing later
+          tr.dataset.id = item._id;
+          tr.dataset.title = title;
+          tr.dataset.sku = sku;
+          tr.dataset.weight = variantTitle;
+
+          tr.innerHTML = `
+            <td><input type="checkbox" class="custom-checkbox"></td>
+            <td>
+              <div class="table-product-item">
+                <img src="${image}" class="table-product-thumb" alt="${title}">
+                <div>
+                  <div class="table-product-name">${title}</div>
+                  <div style="font-size:11px; color:#6d7175;">${variantTitle}</div>
+                </div>
+              </div>
+            </td>
+            <td>${sku}</td>
+            <td>0</td>
+            <td>${reserved}</td>
+            <td><strong>${available}</strong></td>
+            <td>${onHand}</td>
+            <td>0</td>
+          `;
+          invTbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error('Error fetching inventory:', err);
+      }
+    }
+
+    fetchInventory();
+
+    // Row Click to Open Inventory Variant Editor (Matching Video)
+    if (invTbody) {
+      invTbody.addEventListener('click', function(e) {
+        if (e.target.type === 'checkbox' || e.target.classList.contains('custom-checkbox')) return;
+        
+        const tr = e.target.closest('tr');
+        if (tr && tr.dataset.id) {
+          window.location.href = `admin-inventory-variant.html?id=${tr.dataset.id}&title=${encodeURIComponent(tr.dataset.title)}&weight=${encodeURIComponent(tr.dataset.weight)}&sku=${encodeURIComponent(tr.dataset.sku)}`;
+        }
+      });
+    }
+
+    // Filter
+    const searchInput = document.querySelector('.table-search-input-box input');
+    if (searchInput && invTbody) {
+      searchInput.addEventListener('input', function(e) {
+        const q = e.target.value.toLowerCase();
+        const rows = invTbody.querySelectorAll('tr');
+        rows.forEach(r => {
+          r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>

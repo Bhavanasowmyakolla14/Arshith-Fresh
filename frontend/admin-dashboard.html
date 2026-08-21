@@ -63,6 +63,11 @@
           <span class="badge-count">114</span>
         </a>
 
+        <div class="submenu-list">
+          <a href="admin-orders-drafts.html" class="submenu-item">Drafts</a>
+          <a href="admin-orders-abandoned.html" class="submenu-item">Abandoned checkouts</a>
+        </div>
+
         <a href="admin-products.html" class="menu-item">
           <div class="menu-item-left">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"></path></svg>
@@ -73,9 +78,9 @@
         <div class="submenu-list">
           <a href="admin-collections.html" class="submenu-item">Collections</a>
           <a href="admin-inventory.html" class="submenu-item">Inventory</a>
-          <a href="#" class="submenu-item">Purchase orders</a>
-          <a href="#" class="submenu-item">Transfers</a>
-          <a href="#" class="submenu-item">Gift cards</a>
+          <a href="admin-purchase-orders.html" class="submenu-item">Purchase orders</a>
+          <a href="admin-transfers.html" class="submenu-item">Transfers</a>
+          <a href="admin-gift-cards.html" class="submenu-item">Gift cards</a>
         </div>
 
         <a href="admin-customers.html" class="menu-item">
@@ -84,6 +89,11 @@
             <span>Customers</span>
           </div>
         </a>
+
+        <div class="submenu-list">
+          <a href="admin-customer-segments.html" class="submenu-item">Segments</a>
+          <a href="admin-customer-companies.html" class="submenu-item">Companies</a>
+        </div>
 
         <a href="#" class="menu-item">
           <div class="menu-item-left">
@@ -117,26 +127,26 @@
         
         <div class="data-card" style="padding: 16px;">
           <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Total Sales</div>
-          <div style="font-size: 24px; font-weight: 800; margin: 6px 0; color: #166534;">₹1,42,850</div>
+          <div id="dashTotalSales" style="font-size: 24px; font-weight: 800; margin: 6px 0; color: #166534;">₹...</div>
           <div style="font-size: 11.5px; color: #16a34a; font-weight: 600;">+18.4% vs last month</div>
         </div>
 
         <div class="data-card" style="padding: 16px;">
           <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Total Orders</div>
-          <div style="font-size: 24px; font-weight: 800; margin: 6px 0;">114</div>
+          <div id="dashTotalOrders" style="font-size: 24px; font-weight: 800; margin: 6px 0;">...</div>
           <div style="font-size: 11.5px; color: #16a34a; font-weight: 600;">32 orders today</div>
         </div>
 
         <div class="data-card" style="padding: 16px;">
           <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Total Products</div>
-          <div style="font-size: 24px; font-weight: 800; margin: 6px 0;">87</div>
-          <div style="font-size: 11.5px; color: var(--text-secondary);">Across 15 collections</div>
+          <div id="dashTotalProducts" style="font-size: 24px; font-weight: 800; margin: 6px 0;">...</div>
+          <div style="font-size: 11.5px; color: var(--text-secondary);">Across all collections</div>
         </div>
 
         <div class="data-card" style="padding: 16px;">
-          <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Low Stock Warning</div>
-          <div style="font-size: 24px; font-weight: 800; margin: 6px 0; color: #b45309;">6</div>
-          <div style="font-size: 11.5px; color: #b45309; font-weight: 600;">Requires attention</div>
+          <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Total Customers</div>
+          <div id="dashTotalCustomers" style="font-size: 24px; font-weight: 800; margin: 6px 0; color: #b45309;">...</div>
+          <div style="font-size: 11.5px; color: #b45309; font-weight: 600;">Registered users</div>
         </div>
 
       </div>
@@ -148,7 +158,7 @@
           <a href="admin-products.html" class="btn-pill btn-pill-primary">Manage Products &rarr;</a>
           <a href="admin-collections.html" class="btn-pill">Manage Collections &rarr;</a>
           <a href="admin-inventory.html" class="btn-pill">Manage Inventory &rarr;</a>
-          <a href="admin-orders.html" class="btn-pill">Manage Orders (114) &rarr;</a>
+          <a href="admin-orders.html" class="btn-pill">Manage Orders &rarr;</a>
         </div>
       </div>
 
@@ -156,5 +166,23 @@
 
   </div>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/dashboard/stats');
+        const json = await res.json();
+        
+        if (json.success && json.data) {
+          const stats = json.data;
+          document.getElementById('dashTotalSales').textContent = `₹${stats.totalSales.toLocaleString('en-IN')}`;
+          document.getElementById('dashTotalOrders').textContent = stats.ordersCount;
+          document.getElementById('dashTotalProducts').textContent = stats.productsCount;
+          document.getElementById('dashTotalCustomers').textContent = stats.customersCount;
+        }
+      } catch (err) {
+        console.error("Failed to load dashboard stats", err);
+      }
+    });
+  </script>
 </body>
 </html>

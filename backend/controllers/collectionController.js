@@ -1,11 +1,16 @@
 const Collection = require("../models/Collection");
 
-// GET all collections
+// Helper function to generate URL slug from title
+const generateHandle = (title) => {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+};
 
+// @desc    GET all collections
+// @route   GET /api/collections
+// @access  Public
 const getCollections = async (req, res) => {
   try {
     const collections = await Collection.find()
-      .populate("products")
       .sort({ createdAt: -1 });
 
     res.status(200).json({
@@ -15,7 +20,6 @@ const getCollections = async (req, res) => {
     });
   } catch (error) {
     console.error("Get collections error:", error);
-
     res.status(500).json({
       success: false,
       message: "Failed to fetch collections",
@@ -24,11 +28,21 @@ const getCollections = async (req, res) => {
   }
 };
 
-// GET single collection
+// @desc    GET single collection by ID or handle
+// @route   GET /api/collections/:id
+// @access  Public
 const getCollectionById = async (req, res) => {
   try {
-    const collection = await Collection.findById(req.params.id)
-      .populate("products");
+    const { id } = req.params;
+    let collection;
+    
+    // Check if ID is a valid MongoDB ObjectId
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      collection = await Collection.findById(id);
+    } else {
+      // If not ObjectId, try to find by handle (slug)
+      collection = await Collection.findOne({ handle: id.toLowerCase() });
+    }
 
     if (!collection) {
       return res.status(404).json({
@@ -50,18 +64,12 @@ const getCollectionById = async (req, res) => {
   }
 };
 
-// CREATE collection
+// @desc    CREATE collection
+// @route   POST /api/collections
+// @access  Private/Admin
 const createCollection = async (req, res) => {
   try {
-    const {
-      title,
-      image,
-      products,
-      conditions,
-      conditionType,
-      tags,
-      status,
-    } = req.body;
+    const { title, description, image, isActive } = req.body;
 
     if (!title) {
       return res.status(400).json({
@@ -70,14 +78,17 @@ const createCollection = async (req, res) => {
       });
     }
 
+    let handle = req.body.handle;
+    if (!handle) {
+      handle = generateHandle(title);
+    }
+
     const collection = await Collection.create({
       title,
-      image,
-      products: products || [],
-      conditions,
-      conditionType,
-      tags: tags || [],
-      status,
+      handle,
+      description: description || "",
+      image: image || "",
+      isActive: isActive !== undefined ? isActive : true
     });
 
     res.status(201).json({
@@ -87,7 +98,13 @@ const createCollection = async (req, res) => {
     });
   } catch (error) {
     console.error("Create collection error:", error);
-
+    // Handle duplicate handle error
+    if (error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        message: "A collection with this handle already exists",
+      });
+    }
     res.status(500).json({
       success: false,
       message: "Failed to create collection",
@@ -96,11 +113,17 @@ const createCollection = async (req, res) => {
   }
 };
 
-
-
-// UPDATE collection
+// @desc    UPDATE collection
+// @route   PUT /api/collections/:id
+// @access  Private/Admin
 const updateCollection = async (req, res) => {
   try {
+    // If title is being updated and no handle provided, regenerate handle?
+    // Usually best to leave handle alone unless explicitly changed to avoid breaking URLs.
+    if (req.body.handle) {
+      req.body.handle = generateHandle(req.body.handle);
+    }
+
     const collection = await Collection.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -124,7 +147,6 @@ const updateCollection = async (req, res) => {
     });
   } catch (error) {
     console.error("Update collection error:", error);
-
     res.status(500).json({
       success: false,
       message: "Failed to update collection",
@@ -133,7 +155,9 @@ const updateCollection = async (req, res) => {
   }
 };
 
-// DELETE collection
+// @desc    DELETE collection
+// @route   DELETE /api/collections/:id
+// @access  Private/Admin
 const deleteCollection = async (req, res) => {
   try {
     const collection = await Collection.findByIdAndDelete(req.params.id);
@@ -151,7 +175,6 @@ const deleteCollection = async (req, res) => {
     });
   } catch (error) {
     console.error("Delete collection error:", error);
-
     res.status(500).json({
       success: false,
       message: "Failed to delete collection",

@@ -99,6 +99,11 @@
           <span class="badge-count">114</span>
         </a>
 
+        <div class="submenu-list">
+          <a href="admin-orders-drafts.html" class="submenu-item">Drafts</a>
+          <a href="admin-orders-abandoned.html" class="submenu-item">Abandoned checkouts</a>
+        </div>
+
         <a href="admin-products.html" class="menu-item active">
           <div class="menu-item-left">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"></path></svg>
@@ -109,9 +114,9 @@
         <div class="submenu-list">
           <a href="admin-collections.html" class="submenu-item">Collections</a>
           <a href="admin-inventory.html" class="submenu-item">Inventory</a>
-          <a href="#" class="submenu-item">Purchase orders</a>
-          <a href="#" class="submenu-item">Transfers</a>
-          <a href="#" class="submenu-item">Gift cards</a>
+          <a href="admin-purchase-orders.html" class="submenu-item">Purchase orders</a>
+          <a href="admin-transfers.html" class="submenu-item">Transfers</a>
+          <a href="admin-gift-cards.html" class="submenu-item">Gift cards</a>
         </div>
 
         <a href="admin-customers.html" class="menu-item">
@@ -120,6 +125,11 @@
             <span>Customers</span>
           </div>
         </a>
+
+        <div class="submenu-list">
+          <a href="admin-customer-segments.html" class="submenu-item">Segments</a>
+          <a href="admin-customer-companies.html" class="submenu-item">Companies</a>
+        </div>
 
         <a href="#" class="menu-item">
           <div class="menu-item-left">
@@ -479,106 +489,92 @@
     <span id="toastText">Product saved successfully!</span>
   </div>
 
-  <!-- JavaScript Behavior & Dynamic Preloading -->
   <script>
-    // Product Catalog Mock Database for instant preloading
-    const productDatabase = {
-      "chilli-powder-premium": {
-        title: "Chilli Powder (Premium)",
-        status: "Active",
-        type: "Deal Of the Week",
-        vendor: "Arshith Fresh India Pvt Ltd",
-        category: "Herbs & Spices in Seasonings & Spices",
-        description: `Add rich color and authentic spice to your cooking with Arshith Fresh Premium Chilli Powder.<br><br>Made from carefully selected dried red chillies, this chilli powder is soft-ground to retain natural aroma, vibrant color, and balanced heat.<br><br>Perfect for curries, dals, gravies, pickles, and traditional Indian recipes.<br><br>Hygienically processed, free from artificial colors or additives, and packed to preserve freshness.<br><br>Ideal for home cooking, restaurants, and spice lovers who want consistent quality and bold flavor.`,
-        price250: "₹ 131.00",
-        price500: "₹ 239.00",
-        stock: 44,
-        images: [
-          "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300&auto=format&fit=crop&q=60",
-          "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?w=300&auto=format&fit=crop&q=60",
-          "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?w=300&auto=format&fit=crop&q=60"
-        ]
-      },
-      "chilli-powder": {
-        title: "Chilli Powder",
-        status: "Draft",
-        type: "Cooking Ingredients",
-        vendor: "Arshith Fresh India Pvt Ltd",
-        category: "Herbs & Spices",
-        description: `Pure and authentic farm fresh Chilli Powder, sun-dried and finely ground for everyday culinary use. Free from artificial colors and preservatives.`,
-        price250: "₹ 95.00",
-        price500: "₹ 180.00",
-        stock: 150,
-        images: [
-          "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300&auto=format&fit=crop&q=60"
-        ]
-      },
-      "dry-seeds-combo": {
-        title: "Dry-Seeds-Combo (Premium Quality)",
-        status: "Draft",
-        type: "Dry Seeds",
-        vendor: "Arshith Fresh India Pvt Ltd",
-        category: "Healthy Seeds & Nuts",
-        description: `Nutrient-dense superfood combo consisting of premium raw chia seeds, flax seeds, pumpkin seeds, and sunflower seeds.`,
-        price250: "₹ 299.00",
-        price500: "₹ 549.00",
-        stock: 400,
-        images: [
-          "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?w=300&auto=format&fit=crop&q=60"
-        ]
-      },
-      "dry-fruits-combo": {
-        title: "Dry-Fruits-Combo (Premium Quality)",
-        status: "Draft",
-        type: "Dry Fruits",
-        vendor: "Arshith Fresh India Pvt Ltd",
-        category: "Dry Fruits & Nuts",
-        description: `Handpicked California almonds, whole cashews, Afghani raisins, and premium walnuts for healthy daily snacking.`,
-        price250: "₹ 450.00",
-        price500: "₹ 850.00",
-        stock: 100,
-        images: [
-          "https://images.unsplash.com/photo-1595231712325-9f55e5f5f4b5?w=300&auto=format&fit=crop&q=60"
-        ]
-      },
-      "besan-flour": {
-        title: "Besan Flour Soft Grinding (Premium Quality)",
-        status: "Active",
-        type: "Cooking Ingredients",
-        vendor: "Arshith Fresh India Pvt Ltd",
-        category: "Flours & Grains",
-        description: `100% pure Chana Dal Besan Flour, finely milled to perfection for crispy pakoras, sweets, and traditional batters.`,
-        price250: "₹ 65.00",
-        price500: "₹ 120.00",
-        stock: 200,
-        images: [
-          "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?w=300&auto=format&fit=crop&q=60"
-        ]
-      }
-    };
+    let currentProductId = null;
 
-    // Parse URL parameter
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const productSlug = urlParams.get('product') || 'chilli-powder-premium';
+      currentProductId = urlParams.get('id');
 
-      const data = productDatabase[productSlug] || productDatabase['chilli-powder-premium'];
-      
-      // Update UI with selected product
-      document.getElementById('productTitleHeading').textContent = data.title;
-      document.getElementById('inputProductTitle').value = data.title;
-      document.getElementById('productDescriptionEditor').innerHTML = data.description;
-      document.getElementById('selectProductStatus').value = data.status;
-      document.getElementById('inputType').value = data.type;
-      document.getElementById('inputVendor').value = data.vendor;
-      
-      handleStatusChange(data.status);
+      if (!currentProductId) {
+        // Handle create new product later, for now just show error
+        document.getElementById('productTitleHeading').textContent = "Product Not Found";
+        return;
+      }
 
-      // Update SEO snippet
-      document.getElementById('seoTitle').textContent = `Buy ${data.title} Online | Arshith Fresh`;
+      try {
+        const response = await fetch(`http://localhost:5000/api/products/${currentProductId}`);
+        const result = await response.json();
+        
+        if (response.ok) {
+          populateProductData(result);
+        } else {
+          document.getElementById('productTitleHeading').textContent = "Product Not Found";
+        }
+      } catch (err) {
+        console.error('Error fetching product:', err);
+      }
     });
 
-    // Real-time status update
+    function populateProductData(data) {
+      // 1. Top Header & Title
+      document.getElementById('productTitleHeading').textContent = data.title;
+      document.getElementById('inputProductTitle').value = data.title;
+      document.getElementById('selectProductStatus').value = data.status === 'active' ? 'Active' : 'Draft';
+      handleStatusChange(data.status === 'active' ? 'Active' : 'Draft');
+
+      // 2. Description Editor
+      document.getElementById('productDescriptionEditor').innerHTML = data.description || '';
+
+      // 3. Media Gallery
+      const mediaGrid = document.getElementById('mediaGrid');
+      if (mediaGrid && data.images) {
+        let mediaHtml = '';
+        data.images.forEach((img, idx) => {
+          mediaHtml += `
+            <div class="media-thumbnail-card">
+              <img src="${img.url}" alt="${img.altText || data.title}">
+            </div>
+          `;
+        });
+        mediaHtml += `
+          <div class="media-add-box" title="Add Media" onclick="document.getElementById('mediaFileInput').click()">
+            <span>+</span>
+          </div>
+        `;
+        mediaGrid.innerHTML = mediaHtml;
+      }
+
+      // 4. Variants Table
+      const variantTableBody = document.querySelector('.detail-card table tbody');
+      if (variantTableBody && data.variants) {
+        variantTableBody.innerHTML = data.variants.map(v => `
+          <tr style="border-top: 1px solid var(--border-subtle);">
+            <td style="padding: 10px 0;"><input type="checkbox" class="custom-checkbox"></td>
+            <td style="padding: 10px 8px;">
+              <strong>${v.title || 'Default'}</strong><br>
+              <span style="color: var(--text-secondary); font-size: 11.5px;">${v.sku}</span>
+            </td>
+            <td style="padding: 10px 8px;">
+              <input type="text" class="form-control" value="₹ ${v.price}" style="padding: 4px 8px; font-size: 12.5px;" readonly>
+            </td>
+            <td style="padding: 10px 0; text-align: right;">
+              <span style="font-size: 12.5px; font-weight:600;">(Stock Managed in Inventory)</span>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // 5. Right Column Organization
+      document.getElementById('inputType').value = data.type || '';
+      document.getElementById('inputVendor').value = data.brand || 'Arshith Fresh India Pvt Ltd';
+
+      // 6. SEO Snippet Preview
+      document.getElementById('seoTitle').textContent = `Buy ${data.title} Online | Arshith Fresh`;
+      document.getElementById('seoUrl').textContent = `https://arshithfresh.com > products > ${data._id}`;
+      document.getElementById('seoSnippet').textContent = `Buy authentic ${data.title} online from Arshith Fresh. Pure quality, fresh hygienic packaging, and fast delivery across India.`;
+    }
+
     function handleStatusChange(status) {
       const badge = document.getElementById('topStatusBadge');
       badge.textContent = status;
@@ -589,17 +585,42 @@
       }
     }
 
-    // Save Feedback
-    function saveProductDetails() {
+    async function saveProductDetails() {
+      if (!currentProductId) return;
+
       const btn = document.getElementById('btnSave');
       btn.textContent = "Saving...";
       btn.disabled = true;
 
-      setTimeout(() => {
+      const updatedData = {
+        title: document.getElementById('inputProductTitle').value,
+        description: document.getElementById('productDescriptionEditor').innerHTML,
+        status: document.getElementById('selectProductStatus').value.toLowerCase(),
+        type: document.getElementById('inputType').value,
+        brand: document.getElementById('inputVendor').value
+      };
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/products/${currentProductId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedData)
+        });
+
+        if (response.ok) {
+          const resData = await response.json();
+          document.getElementById('productTitleHeading').textContent = resData.title;
+          showToast("Product details updated successfully!");
+        } else {
+          showToast("Failed to save product details.");
+        }
+      } catch (err) {
+        console.error('Error saving product:', err);
+        showToast("Error saving product details.");
+      } finally {
         btn.textContent = "Save";
         btn.disabled = false;
-        showToast("Product details updated successfully!");
-      }, 500);
+      }
     }
 
     function showToast(message) {
@@ -611,37 +632,10 @@
       }, 2500);
     }
 
-    function previewProduct() {
-      window.open('index.html', '_blank');
-    }
-
-    function shareProduct() {
-      navigator.clipboard.writeText(window.location.href);
-      showToast("Link copied to clipboard!");
-    }
-
-    function openMoreActions() {
-      if (confirm("Duplicate this product?")) {
-        showToast("Product duplicated successfully!");
-      }
-    }
-
-    function handleAddMedia(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const grid = document.getElementById('mediaGrid');
-          const addBox = grid.querySelector('.media-add-box');
-          const div = document.createElement('div');
-          div.className = 'media-thumbnail-card';
-          div.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
-          grid.insertBefore(div, addBox);
-          showToast("Image added to media gallery!");
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+    function previewProduct() { window.open('index.html', '_blank'); }
+    function shareProduct() { navigator.clipboard.writeText(window.location.href); showToast("Link copied!"); }
+    function openMoreActions() { showToast("More actions coming soon."); }
+    function handleAddMedia(event) { showToast("Media upload coming soon."); }
   </script>
 
 </body>

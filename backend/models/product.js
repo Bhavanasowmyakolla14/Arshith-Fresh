@@ -1,57 +1,20 @@
 const mongoose = require('mongoose');
 
-
-
-const productSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-      trim: true
-    },
-    
-
-    description: {
-      type: String,
-      default: ''
-    },
-
-    price: {
-      type: Number,
-      required: true
-    },
-
-    image: {
-      type: String,
-      default: ''
-    },
-
-    category: {
-      type: String,
-      default: ''
-    },
-
-    tags: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    stock: {
-      type: Number,
-      default: 0
-    },
-
-    status: {
-      type: String,
-      enum: ['active', 'draft'],
-      default: 'active'
-    }
-  },
-  {
-    timestamps: true
+const productSchema = new mongoose.Schema({
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Seller' },
+  title: { type: String, required: true },
+  description: { type: String },
+  brand: { type: String, default: 'Arshith Fresh' },
+  sku: { type: String },
+  categoryId: { type: mongoose.Schema.Types.ObjectId },
+  type: { type: String, default: 'Cooking Ingredients' },
+  tags: [{ type: String }],
+  status: { 
+    type: String, 
+    enum: ['active', 'inactive'], 
+    default: 'active' 
   }
-);
+}, { timestamps: true });
 
-module.exports = mongoose.model('Product', productSchema);
+// Prevent mongoose OverwriteModelError if already registered
+module.exports = mongoose.models.Product || mongoose.model('Product', productSchema);
