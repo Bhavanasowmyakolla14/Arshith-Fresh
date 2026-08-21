@@ -1841,3 +1841,122 @@ document.addEventListener("click", (e) => {
         }
     }
 });
+
+/* ==========================================
+   FOOTER POLICY MODALS & ACCORDION HANDLERS
+   ========================================== */
+
+const POLICY_DATA = {
+    privacy: {
+        title: "Privacy Policy",
+        content: `
+            <p>At <strong>Arshith Fresh India Pvt. Ltd.</strong>, we prioritize the privacy and security of our customers' personal information.</p>
+            <h3>1. Information We Collect</h3>
+            <p>When you place an order or create an account, we collect necessary personal details including your name, email address, phone number, delivery address, and payment confirmation.</p>
+            <h3>2. How We Use Your Information</h3>
+            <p>Your details are used strictly for order fulfillment, delivery tracking, customer support, and providing updates regarding your purchases.</p>
+            <h3>3. Data Protection & Security</h3>
+            <p>We use SSL encryption protocols to secure all online transactions. We do not sell, rent, or trade your personal information to third parties.</p>
+            <h3>4. Third-Party Services</h3>
+            <p>Logistics and delivery partners (e.g., Delhivery, BlueDart, DTDC) receive only necessary shipping details to fulfill your orders.</p>
+        `
+    },
+    shipping: {
+        title: "Shipping & Delivery Policy",
+        content: `
+            <p>We deliver natural, cold-pressed oils, spice powders, ghee, honey, and dry fruits fresh from our facility across India.</p>
+            <h3>1. Shipping Charges</h3>
+            <p><strong>FREE Shipping</strong> on all orders of ₹1,000 and above. For orders under ₹1,000, a flat nominal delivery fee applies.</p>
+            <h3>2. Delivery Timelines</h3>
+            <p>Standard delivery takes <strong>3 to 5 business days</strong> for metro cities and <strong>5 to 7 business days</strong> for non-metro regions.</p>
+            <h3>3. Order Tracking</h3>
+            <p>Once dispatched, you will receive a tracking link via SMS and email. You can also track your order directly on our <a href="cart.html" style="color: #0f7139; font-weight: 600;">Track Your Order</a> page.</p>
+        `
+    },
+    returns: {
+        title: "Returns & Refunds Policy",
+        content: `
+            <p>Your satisfaction is our top priority. We offer a hassle-free replacement policy for defective or incorrect orders.</p>
+            <h3>1. Eligibility for Returns</h3>
+            <p>We accept replacement requests within <strong>7 days of delivery</strong> for damaged, leaked, expired, or incorrect products.</p>
+            <h3>2. Return Process</h3>
+            <p>Please share photos or an unboxing video of the issue to <strong>support@arshithfresh.com</strong> or WhatsApp <strong>+91 8618471424</strong> within 48 hours of receipt.</p>
+            <h3>3. Refund Processing</h3>
+            <p>Once approved, refunds are credited back to your original payment mode within <strong>5 to 7 working days</strong>.</p>
+        `
+    },
+    terms: {
+        title: "Terms of Service",
+        content: `
+            <p>Welcome to <strong>Arshith Fresh</strong>. By accessing or using our website, you agree to comply with our Terms of Service.</p>
+            <h3>1. Product Availability & Pricing</h3>
+            <p>All prices are in Indian Rupees (INR) and inclusive of taxes. We reserve the right to revise product offerings or prices without prior notice.</p>
+            <h3>2. Intellectual Property</h3>
+            <p>All content, branding, photography, and text on this website belong exclusively to Arshith Fresh India Pvt. Ltd.</p>
+            <h3>3. Governing Law</h3>
+            <p>These terms shall be governed and interpreted in accordance with the laws of India, subject to Bengaluru jurisdiction.</p>
+        `
+    }
+};
+
+function openPolicyModal(type) {
+    const data = POLICY_DATA[type];
+    if (!data) return;
+
+    let modal = document.getElementById("policyDetailModal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "policyDetailModal";
+        modal.className = "policy-modal-backdrop";
+        document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `
+        <div class="policy-modal-dialog">
+            <button class="policy-modal-close" onclick="closePolicyModal()">&times;</button>
+            <div class="policy-modal-header">
+                <h2>${data.title}</h2>
+            </div>
+            <div class="policy-modal-body">
+                ${data.content}
+            </div>
+            <div class="policy-modal-footer">
+                <button class="policy-close-btn" onclick="closePolicyModal()">Close</button>
+            </div>
+        </div>
+    `;
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function closePolicyModal() {
+    const modal = document.getElementById("policyDetailModal");
+    if (modal) {
+        modal.classList.remove("active");
+    }
+    document.body.style.overflow = "";
+}
+
+// Global listener for footer accordion toggle on mobile & policy modal backdrop clicks
+document.addEventListener("click", function (e) {
+    // 1. Footer Accordion Buttons on Mobile
+    const accordionBtn = e.target.closest(".footer-accordion-btn");
+    if (accordionBtn) {
+        const col = accordionBtn.closest(".footer-col");
+        if (col) {
+            col.classList.toggle("open");
+            const arrow = accordionBtn.querySelector(".footer-arrow");
+            if (arrow) {
+                arrow.textContent = col.classList.contains("open") ? "-" : "+";
+            }
+        }
+    }
+
+    // 2. Policy Modal Backdrop Click
+    const policyModal = document.getElementById("policyDetailModal");
+    if (policyModal && policyModal.classList.contains("active") && e.target === policyModal) {
+        closePolicyModal();
+    }
+});
+

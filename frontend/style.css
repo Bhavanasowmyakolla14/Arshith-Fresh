@@ -4524,6 +4524,116 @@ main {
     }
 }
 
+/* Policy Modal Popup Styling */
+.policy-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.policy-modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.policy-modal-dialog {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+    padding: 30px 28px 24px 28px;
+    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.policy-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: #f1f5f9;
+    border: none;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.policy-modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.policy-modal-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    color: #0f7139;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.policy-modal-body {
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.policy-modal-body h3 {
+    font-size: 16px;
+    color: #0f7139;
+    margin: 18px 0 6px 0;
+    font-weight: 600;
+}
+
+.policy-modal-body p {
+    margin: 0 0 12px 0;
+}
+
+.policy-modal-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.policy-close-btn {
+    background: #0f7139;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.policy-close-btn:hover {
+    background: #0b3718;
+}
+
+
 
 
 
